@@ -2,10 +2,10 @@
  <Configuration status="INFO">
      <Appenders>
          <Console name="Console" target="SYSTEM_OUT">
-             <PatternLayout pattern="%d{HH:mm:ss.SSS}: %-5level{lowerCase=true} - %msg%n%n"/>
+             <PatternLayout pattern="%n[%d{HH:mm:ss.SSS}][%-5level{lowerCase=true}] %msg"/>
          </Console>
-         <File name="MyFile" fileName="log4j.log" immediateFlush="true" append="false">
-             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS}: %-5level{lowerCase=true} - %msg%n%n"/>
+         <File name="MyFile" fileName="logs/log4j.log" immediateFlush="true" append="true">
+             <PatternLayout pattern="%n[%d{yyy-MM-dd HH:mm:ss.SSS}][%-5level{lowerCase=true}] %msg"/>
          </File>
      </Appenders>
      <Loggers>
