@@ -6,7 +6,9 @@
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%d{yyy-MM-dd HH:mm:ss.SSS}][%-5level{lowerCase=true}] %msg%n"/>
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
         </Console>
 
         <RollingFile
