@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <Configuration status="INFO">
-     <Appenders>
-         <Console name="Console" target="SYSTEM_OUT">
-             <PatternLayout pattern="[%d{yyy-MM-dd HH:mm:ss.SSS}][%-5level{lowerCase=true}] %msg%n"/>
-         </Console>
-         <File name="MyFile" fileName="logs/log4j.log" immediateFlush="true" append="true">
-             <PatternLayout pattern="[%d{yyy-MM-dd HH:mm:ss.SSS}][%-5level{lowerCase=true}] %msg%n"/>
-         </File>
+    <Properties>
+        <Property name="LOG_DIR">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyy-MM-dd HH:mm:ss.SSS}][%-5level{lowerCase=true}] %msg%n"/>
+        </Console>
+
+        <RollingFile
+            name="Kaltura"
+            fileName="logs/kaltura.log"
+            filePattern="logs/$${date:yyyy-MM}/kaltura-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="250 KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
      </Appenders>
+
      <Loggers>
          <Root level="all">
              <AppenderRef ref="Console" />
-             <AppenderRef ref="MyFile"/>
+             <AppenderRef ref="Kaltura"/>
          </Root>
      </Loggers>
- </Configuration> 
+ </Configuration>
